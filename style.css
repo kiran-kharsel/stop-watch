@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.container{
+    width: 400px;
+    height: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container h1{
+    font-size: 60px;
+}
+
+.container .btn-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-container button{
+    font-size: 16px;
+    padding: 7px 15px;
+    border: 1px solid cornflowerblue;
+    outline: 0;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+    color: white;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: .7s;
+}
+
+.btn-container button:hover{
+    background-color: white;
+    color: cornflowerblue;
+}
+
+.container .laps{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    overflow-y: scroll;
+}
+
+.laps .lap-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px;
+    color: grey;
+    border-bottom: 1px solid grey;
+    text-transform: capitalize;
+}
+
+.laps .lap{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px;
+    color: black;
+}
