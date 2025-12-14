@@ -2,6 +2,8 @@
 const timerElem = document.querySelector('.timer')
 const startBtn = document.querySelector('.start');
 const pauseBtn = document.querySelector('.pause');
+const resetBtn = document.querySelector('.reset');
+const lapBtn = document.querySelector('.lap');
 
 
 let timerInterval;
@@ -44,5 +46,15 @@ startBtn.addEventListener('click', function(){
 
 
 pauseBtn.addEventListener('click', function(){
-    clearInterval(timerInterval)
+    clearInterval(timerInterval);
+});
+
+
+resetBtn.addEventListener('click', function(){
+    milisec = 0;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    clearInterval(timerInterval);
+    timerElem.innerHTML = `00 : 00 : 00 : 00`;
 })
