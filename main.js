@@ -13,6 +13,11 @@ let minutes = 0;
 let hours = 0;
 
 
+let laps = [];
+let lapNumber = 0;
+let lapTime = 0;
+let totalTime = 0;
+
 function updateTimer(){
     let hr = String(hours).padStart(2, '0');
     let min = String(minutes).padStart(2, '0');
@@ -57,4 +62,39 @@ resetBtn.addEventListener('click', function(){
     hours = 0;
     clearInterval(timerInterval);
     timerElem.innerHTML = `00 : 00 : 00 : 00`;
-})
+});
+
+lapBtn.addEventListener('click', function(){
+    lapNumber++;
+    let totalMilisec = (hours*(60*60*1000)) + (minutes*(60*1000)) + (seconds * 1000) + milisec;
+    lapTime = totalMilisec - lapTime;
+    // convert times to format time
+    let formattedTotalTime = formatTime(totalMilisec)
+    let formattedLaptime = formatTime(lapTime);
+    console.log(formattedTotalTime)
+    console.log(formattedLaptime)
+
+    // push into array 
+    let lapsObj = {
+        lapNo : lapNumber,
+        laptime : formattedLaptime,
+        totaltime : formattedTotalTime
+    };
+
+    laps = [...laps, lapsObj];
+
+    // laps.forEach((lap) =>{
+    //     let li = document.
+    // })
+});
+
+
+function formatTime(totalTime){
+    const hours = Math.floor(totalTime / 3600000);
+  const minutes = Math.floor((totalTime % 3600000) / 60000);
+  const seconds = Math.floor((totalTime % 60000) / 1000);
+  const milliseconds = totalTime % 1000;
+
+  return { hours, minutes, seconds, milliseconds };
+
+}
