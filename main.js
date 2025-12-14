@@ -1,14 +1,26 @@
 // dom elem
-const startBtn = document.querySelector('.start');
 const timerElem = document.querySelector('.timer')
+const startBtn = document.querySelector('.start');
+const pauseBtn = document.querySelector('.pause');
 
-let timer = 0;
+
 let timerInterval;
-
 let milisec = 0;
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
+
+
+function updateTimer(){
+    let hr = String(hours).padStart(2, '0');
+    let min = String(minutes).padStart(2, '0');
+    let sec = String(seconds).padStart(2, '0');
+    let ms = String(milisec).padStart(2, '0');
+
+    timerElem.innerHTML = `${hr} : ${min} : ${sec} : ${ms}`;
+}
+
+
 
 startBtn.addEventListener('click', function(){
     timerInterval = setInterval(()=>{
@@ -26,15 +38,11 @@ startBtn.addEventListener('click', function(){
             hours++
         }
 
-        updateTimer(timer)
+        updateTimer()
     }, 10);
 });
 
-function updateTimer(){
-    let hr = String(hours).padStart(2, '0');
-    let min = String(minutes).padStart(2, '0');
-    let sec = String(seconds).padStart(2, '0');
-    let ms = String(milisec).padStart(2, '0');
 
-    timerElem.innerHTML = `${hr} : ${min} : ${sec} : ${ms}`;
-}
+pauseBtn.addEventListener('click', function(){
+    clearInterval(timerInterval)
+})
