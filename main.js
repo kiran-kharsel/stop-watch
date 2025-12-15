@@ -29,7 +29,7 @@ function updateTimer() {
 startBtn.addEventListener("click", function () {
   timerInterval = setInterval(() => {
     milisec++;
-    if (milisec === 100) {
+    if (milisec === 1000) {
       milisec = 0;
       seconds++;
     }
@@ -43,7 +43,7 @@ startBtn.addEventListener("click", function () {
     }
 
     updateTimer();
-  }, 10);
+  }, 1);
 });
 
 pauseBtn.addEventListener("click", function () {
@@ -51,25 +51,42 @@ pauseBtn.addEventListener("click", function () {
 });
 
 resetBtn.addEventListener("click", function () {
+  clearInterval(timerInterval);
+
   milisec = 0;
   seconds = 0;
   minutes = 0;
   hours = 0;
-  clearInterval(timerInterval);
+
   timerElem.innerHTML = `00 : 00 : 00 : 00`;
   lapsElem.innerHTML = '';
+
+  laps = [];
+  lapNumber = 0;
+  lapTime = 0;
+  totalTime = 0;
 });
 
 lapBtn.addEventListener("click", function () {
   lapNumber++;
-  let totalMilisec =
-    hours * (60 * 60 * 1000) + minutes * (60 * 1000) + seconds * 1000 + milisec;
+  let totalMilisec = hours * (60 * 60 * 1000) + minutes * (60 * 1000) + seconds * 1000 + milisec;
   lapTime = totalMilisec - lapTime;
+
+  console.log(seconds, milisec)
+  //console.log('lap -' + lapTime)
+
+
+
+
+
+
+
+
   // convert times to format time
   let formattedTotalTime = formatTime(totalMilisec);
   let formattedLaptime = formatTime(lapTime);
-  console.log(formattedTotalTime);
-  console.log(formattedLaptime);
+  // console.log(formattedTotalTime);
+  // console.log(formattedLaptime);
 
   // push into array
   let lapsObj = {
@@ -80,9 +97,7 @@ lapBtn.addEventListener("click", function () {
 
   laps = [...laps, lapsObj];
 
-   lapsElem.innerHTML = '';
-
-  console.log(laps[0]);
+  lapsElem.innerHTML = '';
 
   laps.forEach((lap) => {
 
@@ -90,8 +105,8 @@ lapBtn.addEventListener("click", function () {
     li.classList.add("lap");
     li.innerHTML = `
         <p class="lapNumber">${lap.lapNo}</p>
-        <p class="laptimes">${lap.laptime.hours} : ${lap.laptime.minutes} : ${lap.laptime.seconds}</p>
-        <p class="overallTime">${lap.totaltime.hours} : ${lap.totaltime.minutes} : ${lap.totaltime.seconds}</p>
+        <p class="laptimes">${lap.laptime.hours} : ${lap.laptime.minutes} : ${lap.laptime.seconds}:${lap.laptime.milliseconds}</p>
+        <p class="overallTime">${lap.totaltime.hours} : ${lap.totaltime.minutes} : ${lap.totaltime.seconds}:${lap.laptime.milliseconds}</p>
         `;
     lapsElem.appendChild(li);
   });
